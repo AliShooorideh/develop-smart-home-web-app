@@ -7,4 +7,9 @@
 @import "tailwindcss/utilities";
 /* @import "./custom-utilities.css"; */
 
+input.circle-range-select {
+  display: none;
+}
+
+
 

@@ -1,8 +1,9 @@
-import React, {createContext, ReactNode, useState} from 'react';
-import {ContextType, IState} from './types';
+import React, { createContext, ReactNode, useState } from "react";
+import { ContextType, IState } from "./types";
 
 const initialState = {
-
+  showData: [],
+  notif:false
 };
 
 const AppContext = createContext<ContextType>({
@@ -14,13 +15,13 @@ interface IProvider {
   children: ReactNode;
 }
 
-const Provider: React.FC<IProvider> = ({children}) => {
+const Provider: React.FC<IProvider> = ({ children }) => {
   const [store, setState] = useState<IState>(initialState);
   const setStore = (name: string, e: any) => {
-    if (name === 'reset') {
+    if (name === "reset") {
       setState(initialState);
     }
-    setState(prevState => ({...prevState, [name]: e}));
+    setState((prevState) => ({ ...prevState, [name]: e }));
   };
 
   return (
@@ -28,10 +29,11 @@ const Provider: React.FC<IProvider> = ({children}) => {
       value={{
         store,
         setStore,
-      }}>
+      }}
+    >
       {children}
     </AppContext.Provider>
   );
 };
 
-export {Provider, AppContext};
+export { Provider, AppContext };
